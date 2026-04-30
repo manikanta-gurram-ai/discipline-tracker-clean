@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>365 Days Discipline Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-bg">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+  </div>
+
+  <main class="app-shell">
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-layout">
+        <article class="brand-panel glass-card">
+          <p class="eyebrow">365 Day Reset</p>
+          <h1>Build discipline with a premium daily system.</h1>
+          <p class="hero-copy">
+            Track routines, protect your streak, and keep every win connected to your personal dashboard.
+          </p>
+
+          <div class="brand-highlights">
+            <div class="highlight-card">
+              <strong>365</strong>
+              <span>Days of focused consistency</span>
+            </div>
+            <div class="highlight-card">
+              <strong>Weekly</strong>
+              <span>Activity insights and completion trends</span>
+            </div>
+            <div class="highlight-card">
+              <strong>Private</strong>
+              <span>Your habits are saved per account in local storage</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="auth-card glass-card">
+          <div class="auth-topbar">
+            <div>
+              <p class="eyebrow">Welcome Back</p>
+              <h2 id="authTitle">Login</h2>
+            </div>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+              <span id="themeToggleIcon">🌙</span>
+            </button>
+          </div>
+
+          <div class="auth-switch">
+            <button class="switch-btn active" id="loginTab" type="button">Login</button>
+            <button class="switch-btn" id="signupTab" type="button">Signup</button>
+          </div>
+
+          <form id="authForm" class="auth-form">
+            <label id="nameField" class="hidden">
+              <span>Name</span>
+              <input id="authName" type="text" placeholder="Your name" />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input id="authEmail" type="email" placeholder="you@example.com" required />
+            </label>
+
+            <label>
+              <span>Password</span>
+              <input id="authPassword" type="password" placeholder="Enter password" required />
+            </label>
+
+            <button class="primary-btn" id="authSubmitBtn" type="submit">Login to Dashboard</button>
+            <p class="status-text" id="authStatus"></p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-screen hidden" id="dashboardScreen">
+      <header class="dashboard-header glass-card">
+        <div>
+          <p class="eyebrow">Premium Discipline Hub</p>
+          <h1>365 Days Discipline Tracker</h1>
+          <p class="hero-copy" id="welcomeText">
+            Your focus dashboard is ready for today.
+          </p>
+        </div>
+
+        <div class="header-actions">
+          <div class="hero-badge">
+            <span>Today</span>
+            <strong id="todayLabel">Today</strong>
+          </div>
+          <button class="theme-toggle" id="dashboardThemeToggle" type="button" aria-label="Toggle theme">
+            <span id="dashboardThemeToggleIcon">🌙</span>
+          </button>
+          <button class="ghost-btn" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section class="cards-layout">
+        <article class="glass-card panel tasks-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Daily Tasks</p>
+              <h2>Today's Timeline</h2>
+            </div>
+            <div class="date-chip" id="dateChip">Date</div>
+          </div>
+
+          <div class="task-summary">
+            <div>
+              <span class="summary-label">Completion</span>
+              <strong id="completedCount">0/0</strong>
+            </div>
+            <div class="mini-progress">
+              <div class="mini-progress-fill" id="miniProgressFill"></div>
+            </div>
+          </div>
+
+          <div class="task-list" id="taskList"></div>
+          <p class="empty-state hidden" id="emptyTasksState">No tasks for today. Add your timetable.</p>
+        </article>
+
+        <article class="glass-card panel activity-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Activity</p>
+              <h2>Momentum Overview</h2>
+            </div>
+            <div class="stat-bubble" id="progressBubble">0%</div>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="activityChart"></canvas>
+          </div>
+
+          <div class="activity-grid">
+            <div class="metric-card">
+              <span>Current streak 🔥</span>
+              <strong id="currentStreak">0</strong>
+              <small>Complete every task today to grow it.</small>
+            </div>
+            <div class="metric-card">
+              <span>Best streak 🏆</span>
+              <strong id="bestStreak">0</strong>
+              <small>Your all-time consistency record.</small>
+            </div>
+            <div class="metric-card wide">
+              <span>Weekly completion</span>
+              <strong id="weeklyStatus">0%</strong>
+              <small id="weeklyInsight">A fresh week to build momentum.</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass-card panel create-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Create Habit</p>
+              <h2>Design Your Day</h2>
+            </div>
+            <button class="plus-chip" id="newTaskBtn" type="button">+ New</button>
+          </div>
+
+          <form id="habitForm" class="habit-form">
+            <label>
+              <span>Task name</span>
+              <input type="text" id="taskName" placeholder="Deep work session" required />
+            </label>
+
+            <div class="time-grid">
+              <label>
+                <span>Start time</span>
+                <input type="time" id="startTime" required />
+              </label>
+              <label>
+                <span>End time</span>
+                <input type="time" id="endTime" required />
+              </label>
+            </div>
+
+            <button type="submit" class="primary-btn">Add to timetable</button>
+            <p class="status-text" id="formStatus"></p>
+          </form>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -688,21 +688,20 @@ function addHabit(event) {
   }
 
   const todayKey = getTodayKey();
-  const newTask = {
-    name,
-    start,
-    end,
-  };
+  const newTask = { name, start, end };
 
   ensureTimetable(data);
   data.timetable.push(newTask);
   data.timetable = sortTasks(data.timetable);
 
-  const todayTasks = getTasksForDate(data, todayKey, true);
+  // ✅ FIX HERE
+  const todayTasks = getTasksForDate(data, todayKey, false);
+
   todayTasks.push({
     ...newTask,
     completed: false,
   });
+
   data.tasks[todayKey] = sortTasks(todayTasks);
   saveCurrentUserData(data);
 

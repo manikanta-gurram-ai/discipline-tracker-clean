@@ -582,7 +582,7 @@ function renderDashboard() {
     return;
   }
 
-  ensureTasksForDate(data, getTodayKey(), true);
+  ensureTasksForDate(data, getTodayKey(), false);
   const streaks = calculateStreaks(data);
   data.streak = streaks.current;
   data.bestStreak = streaks.best;
